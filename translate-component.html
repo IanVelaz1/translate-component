@@ -1,0 +1,50 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../shibui-dropdown-menu/shibui-dropdown-menu.html">
+<dom-module id="translate-component">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+    <shibui-dropdown-menu>
+        <button slot="trigger">Seleccionar idioma</button>
+        <paper-button data-lang="es" on-tap="selectLanguage">Español</paper-button>
+        <paper-button data-lang="en" on-tap="selectLanguage">English</paper-button>
+     </shibui-dropdown-menu>
+  </template>
+
+  <script>
+    /**
+     * `translate-component`
+     * translate component
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class TranslateComponent extends Polymer.Element {
+      static get is() { return 'translate-component'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'translate-component'
+          }
+        };
+      }
+
+      selectLanguage(event){
+        let selectedLanguage=event.target.getAttribute("data-lang");
+        this.dispatchEvent(new CustomEvent("language-changed",{
+           bubbles:false,
+           composed:false,
+          detail:selectedLanguage
+        }));
+      }
+    }
+
+    window.customElements.define(TranslateComponent.is, TranslateComponent);
+  </script>
+</dom-module>
