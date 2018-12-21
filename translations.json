@@ -1,0 +1,57 @@
+{
+   "languagesArray": [
+        {
+          "en":{
+            "logIn": {
+                "title": "Log In",
+                "noAccountText": "you dont have an account with us?",
+                "noAccountBtn": "SIgn In",
+                "mailLabel": "Mail",
+                "passwordLabel": "Password",
+                "logInButton": "LogIn"
+              },
+              "signIn": {
+                "title": "Sign In",
+                "withAccountText": "Do you already have an account with us?",
+                "withAccountBtn": "Login",
+                "nameLabel": "Name",
+                "addressLabel": "Address",
+                "phoneLabel": "Phone",
+                "passwordLabel": "Password",
+                "repeatPasswordLabel": "Repeat password",
+                "imageUrlLabel": "Image url",
+                "mailLabel": "E-mail",
+                "passwordLabel": "Password",
+                "registerBtn": "Register"
+              }
+          }
+        }
+    ,
+     { "es":{
+        "logIn": {
+            "title": "Iniciar Sesion",
+            "noAccountText": "No tienes cuenta con nosotros?",
+            "noAccountBtn": "Registrate",
+            "mailLabel": "E-mail",
+            "passwordLabel": "Contraseña",
+            "logInButton": "Iniciar sesion"
+          },
+          "signIn": {
+            "title": "Crear cuenta",
+            "withAccountText": "Ya tienes cuenta con nosotros?",
+            "withAccountBtn": "Iniciar sesion",
+            "nameLabel": "Nombre",
+            "addressLabel": "Direccion",
+            "phoneLabel": "Telefono",
+            "passwordLabel": "Contraseña",
+            "repeatPasswordLabel": "Repetir contraseña",
+            "imageUrlLabel": "Url de imagen",
+            "mailLabel": "E-mail",
+            "passwordLabel": "Contraseña",
+            "registerBtn": "Registrarse"
+          }
+     }
+        
+     }]
+    
+        }

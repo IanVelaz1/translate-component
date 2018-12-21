@@ -1,5 +1,6 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="../shibui-dropdown-menu/shibui-dropdown-menu.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 <dom-module id="translate-component">
   <template>
     <style>
@@ -8,11 +9,12 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
+
     <shibui-dropdown-menu>
-        <button slot="trigger">Seleccionar idioma</button>
-        <paper-button data-lang="es" on-tap="selectLanguage">Español</paper-button>
-        <paper-button data-lang="en" on-tap="selectLanguage">English</paper-button>
-     </shibui-dropdown-menu>
+      <button slot="trigger">Seleccionar idioma</button>
+      <paper-button data-lang="es" on-tap="selectLanguage">Español</paper-button>
+      <paper-button data-lang="en" on-tap="selectLanguage">English</paper-button>
+    </shibui-dropdown-menu>
   </template>
 
   <script>
@@ -25,24 +27,128 @@
      * @demo demo/index.html
      */
     class TranslateComponent extends Polymer.Element {
-      static get is() { return 'translate-component'; }
+      static get is() {
+        return 'translate-component';
+      }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'translate-component'
+          languages: {
+            type: Array,
+            value() {
+              return [
+
+              ]
+            }
           }
         };
       }
 
-      selectLanguage(event){
-        let selectedLanguage=event.target.getAttribute("data-lang");
-        this.dispatchEvent(new CustomEvent("language-changed",{
-           bubbles:false,
-           composed:false,
-          detail:selectedLanguage
-        }));
+      ready() {
+        super.ready();
+
+
+        fetch("http://localhost:3000/languagesArray").then(response => response.json()).then(data => {
+          console.log(data);
+          
+            this.set("languages", data);
+          let languageSelected = {
+            languages: this.languages,
+            languageSelected: "es"
+          }
+          this.dispatchEvent(new CustomEvent("language-selected", {
+            bubbles: false,
+            composed: false,
+            detail: languageSelected
+          }))
+          
+          
+        }).catch(error => {
+          const languagesArray = [{spanish:{
+              logIn: {
+                title: "Iniciar Sesion",
+                noAccountText: "No tienes cuenta con nosotros?",
+                noAccountBtn: "Registrate",
+                mailLabel: "E-mail",
+                passwordLabel: "Contraseña",
+                logInButton: "Iniciar sesion"
+              },
+              signIn: {
+                title: "Crear cuenta",
+                withAccountText: "Ya tienes cuenta con nosotros?",
+                withAccountBtn: "Iniciar sesion",
+                nameLabel: "Nombre",
+                addressLabel: "Direccion",
+                phoneLabel: "Telefono",
+                passwordLabel: "Contraseña",
+                repeatPasswordLabel: "Repetir contraseña",
+                imageUrlLabel: "Url de imagen",
+                mailLabel: "E-mail",
+                passwordLabel: "Contraseña",
+                registerBtn: "Registrarse"
+              }}
+
+
+            },
+            {english:{
+              logIn: {
+                title: "Log In",
+                noAccountText: "you dont have an account with us?",
+                noAccountBtn: "SIgn In",
+                mailLabel: "Mail",
+                passwordLabel: "Password",
+                logInButton: "LogIn"
+              },
+              signIn: {
+                title: "Sign In",
+                withAccountText: "Do you already have an account with us?",
+                withAccountBtn: "Login",
+                nameLabel: "Name",
+                addressLabel: "Address",
+                phoneLabel: "Phone",
+                passwordLabel: "Password",
+                repeatPasswordLabel: "Repeat password",
+                imageUrlLabel: "Image url",
+                mailLabel: "E-mail",
+                passwordLabel: "Password",
+                registerBtn: "Register"
+              }}
+            }
+          ]
+          let languageSelected = {
+            languages: languagesArray,
+            languageSelected: "es"
+          }
+          this.dispatchEvent(new CustomEvent("language-load-error", {
+            bubbles: false,
+            composed: false,
+            detail: languageSelected
+          }))
+        })
+
       }
+
+      selectLanguage(event) {
+        let languageSelected = {
+          languages: this.languages,
+          languageSelected: event.target.getAttribute("data-lang")
+        }
+
+      
+
+      
+        // this.dispatchEvent(new CustomEvent("language-selected", {
+        //   bubbles: false,
+        //   composed: false,
+        //   detail: languageSelected
+        // }))
+      }
+
+      languageObtained(event) {
+        console.table(event.detail.request)
+
+      }
+
+
     }
 
     window.customElements.define(TranslateComponent.is, TranslateComponent);
