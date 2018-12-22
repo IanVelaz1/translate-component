@@ -10,7 +10,8 @@
       }
     </style>
     <h2>Hello [[prop1]]!</h2>
-    <iron-ajax auto id="translationRequest" method="get" handle-as="json" on-response="languageObtained" on-error="_error"
+    <iron-ajax auto id="translationRequest" method="get" handle-as="json" 
+    on-response="languageObtained" on-error="_error"
       debounce-duration="300" url="http://localhost:3000/languagesArray">
 
     </iron-ajax>

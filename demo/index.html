@@ -22,8 +22,15 @@
       <h3>Basic translate-component demo</h3>
       <demo-snippet>
         <template>
-          <translate-component></translate-component>
+          <translate-component local-language="es"></translate-component>
+          <p id="language-content"></p>
         </template>
+        <script>
+          let translate=document.querySelector("translate-component");
+          translate.addEventListener("language-selected",(event)=>{
+             document.querySelector("#language-content").innerHTML=JSON.stringify(event.detail);
+          })
+        </script>
       </demo-snippet>
     </div>
   </body>
