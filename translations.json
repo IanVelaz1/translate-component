@@ -1,7 +1,7 @@
 {
    "languagesArray": [
         {
-          "en":{
+          
             "logIn": {
                 "title": "Log In",
                 "noAccountText": "you dont have an account with us?",
@@ -24,10 +24,10 @@
                 "passwordLabel": "Password",
                 "registerBtn": "Register"
               }
-          }
+        
         }
     ,
-     { "es":{
+     { 
         "logIn": {
             "title": "Iniciar Sesion",
             "noAccountText": "No tienes cuenta con nosotros?",
@@ -50,7 +50,6 @@
             "passwordLabel": "Contraseña",
             "registerBtn": "Registrarse"
           }
-     }
         
      }]
     
